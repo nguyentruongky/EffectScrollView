@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EffectScrollView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="k36-E1-596">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxO-24-55t" customClass="AnimationScrollView" customModule="EffectScrollView" customModuleProvider="target">
+                                <rect key="frame" x="40" y="80" width="520" height="440"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.21176470589999999" green="0.3294117647" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mxI-An-s3f">
+                                <rect key="frame" x="40" y="540" width="520" height="40"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.12941176469999999" green="0.61960784310000006" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="TZG-uq-Uj8"/>
+                                </constraints>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadNext:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GaF-dl-3Vj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rta-4L-1A9">
+                                <rect key="frame" x="680" y="540" width="520" height="40"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.3411764706" green="0.73725490199999999" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="uTP-eA-h6l"/>
+                                </constraints>
+                                <state key="normal" title="PREVIOUS">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loadPrevious:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MeO-sj-psI"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="82H-fB-xSL">
+                                <rect key="frame" x="10" y="22" width="580" height="29"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="36U-yA-aen"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Cards"/>
+                                    <segment title="Carousel"/>
+                                    <segment title="Depth"/>
+                                    <segment title="Translation"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changeEffect:" destination="BYZ-38-t0r" eventType="valueChanged" id="44t-zX-Omo"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.21176470589999999" green="0.3294117647" blue="0.43529411759999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="82H-fB-xSL" firstAttribute="top" secondItem="k36-E1-596" secondAttribute="top" constant="22" id="0m1-xE-nuS"/>
+                            <constraint firstItem="HxO-24-55t" firstAttribute="width" secondItem="mxI-An-s3f" secondAttribute="width" id="2hw-dX-mfp"/>
+                            <constraint firstItem="Rta-4L-1A9" firstAttribute="width" secondItem="mxI-An-s3f" secondAttribute="width" id="36m-7v-khu"/>
+                            <constraint firstItem="HxO-24-55t" firstAttribute="top" secondItem="k36-E1-596" secondAttribute="top" constant="80" id="75M-Jj-zhH"/>
+                            <constraint firstAttribute="trailing" secondItem="mxI-An-s3f" secondAttribute="trailing" constant="20" id="9ha-c4-L90"/>
+                            <constraint firstItem="mxI-An-s3f" firstAttribute="top" secondItem="HxO-24-55t" secondAttribute="bottom" constant="20" id="Gat-aF-S2Y"/>
+                            <constraint firstAttribute="trailing" secondItem="82H-fB-xSL" secondAttribute="trailing" constant="10" id="fpr-ix-X4I"/>
+                            <constraint firstAttribute="trailing" secondItem="HxO-24-55t" secondAttribute="trailing" constant="40" id="gxF-0F-D3f"/>
+                            <constraint firstItem="Rta-4L-1A9" firstAttribute="trailing" secondItem="mxI-An-s3f" secondAttribute="trailing" constant="40" id="iZF-Dq-s5x"/>
+                            <constraint firstItem="mxI-An-s3f" firstAttribute="leading" secondItem="k36-E1-596" secondAttribute="leading" constant="40" id="ou0-So-TLu"/>
+                            <constraint firstAttribute="bottom" secondItem="Rta-4L-1A9" secondAttribute="bottom" constant="20" id="qD8-OL-Be9"/>
+                            <constraint firstItem="82H-fB-xSL" firstAttribute="leading" secondItem="k36-E1-596" secondAttribute="leading" constant="10" id="qeV-MM-SfE"/>
+                            <constraint firstItem="Rta-4L-1A9" firstAttribute="trailing" secondItem="mxI-An-s3f" secondAttribute="trailing" constant="40" id="qoO-dE-1k4"/>
+                            <constraint firstItem="Rta-4L-1A9" firstAttribute="leading" secondItem="mxI-An-s3f" secondAttribute="trailing" constant="120" id="sVt-gx-XkH"/>
+                            <constraint firstItem="Rta-4L-1A9" firstAttribute="leading" secondItem="mxI-An-s3f" secondAttribute="leading" constant="40" id="xMg-KQ-XM3"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mxI-An-s3f" secondAttribute="bottom" constant="20" id="yPi-0T-nKP"/>
+                            <constraint firstItem="HxO-24-55t" firstAttribute="leading" secondItem="k36-E1-596" secondAttribute="leading" constant="40" id="ya0-8c-aO3"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="9ha-c4-L90"/>
+                                <exclude reference="iZF-Dq-s5x"/>
+                                <exclude reference="qoO-dE-1k4"/>
+                                <exclude reference="xMg-KQ-XM3"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="leftNextButtonConstraint" destination="ou0-So-TLu" id="Sgj-4Z-gFn"/>
+                        <outlet property="nextButton" destination="mxI-An-s3f" id="rjM-pF-45w"/>
+                        <outlet property="previousButton" destination="Rta-4L-1A9" id="3py-qN-A9V"/>
+                        <outlet property="scrollView" destination="HxO-24-55t" id="qo3-iT-kZJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
