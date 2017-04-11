@@ -10,7 +10,7 @@ import UIKit
 
 class AnimationScrollView: UIScrollView {
 
-    var effect = AnimationType.None
+    var effect = AnimationType.none
     
     var angleRatio: CGFloat = 0
     
@@ -37,31 +37,31 @@ class AnimationScrollView: UIScrollView {
         commonInit()
     }
     
-    func DEGREES_TO_RADIANS(angle: CGFloat) -> CGFloat {
+    func degreesToRadians(_ angle: CGFloat) -> CGFloat {
         
-        return (angle) / 180.0 * CGFloat(M_PI)
+        return (angle) / 180.0 * CGFloat(Double.pi)
     }
     
-    func RADIANS_TO_DEGREES(radians: CGFloat) -> CGFloat {
+    func radiansToDegrees(_ radians: CGFloat) -> CGFloat {
         
-        return (radians) * (180.0 / CGFloat(M_PI))
+        return (radians) * (180.0 / CGFloat(Double.pi))
     }
     
     func commonInit() {
         
-        pagingEnabled = true
+        isPagingEnabled = true
         clipsToBounds = false
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
     }
     
-    func setEffect(effect: AnimationType) {
+    func setEffect(_ effect: AnimationType) {
         
         self.effect = effect
         
         switch effect {
             
-        case .Translation:
+        case .translation:
             self.angleRatio = 0.0
             
             self.rotationX = 0.0
@@ -71,7 +71,7 @@ class AnimationScrollView: UIScrollView {
             self.translateX = 0.25
             self.translateY = 0.25
             break
-        case .Depth:
+        case .depth:
             self.angleRatio = 0.5
             
             self.rotationX = -1.0
@@ -81,7 +81,7 @@ class AnimationScrollView: UIScrollView {
             self.translateX = 0.25
             self.translateY = 0.0
             break
-        case .Carousel:
+        case .carousel:
             self.angleRatio = 0.5
             
             self.rotationX = -1.0
@@ -91,7 +91,7 @@ class AnimationScrollView: UIScrollView {
             self.translateX = 0.25
             self.translateY = 0.25
             break
-        case .Cards:
+        case .cards:
             self.angleRatio = 0.5
             
             self.rotationX = -1.0
@@ -120,52 +120,49 @@ class AnimationScrollView: UIScrollView {
         
         super.layoutSubviews()
         
-        let contentOffsetX = self.contentOffset.x
-//        let contentOffsetY = self.contentOffset.y
+        let contentOffsetX = contentOffset.x
         
-        for view in self.subviews {
+        for view in subviews {
             
             let t1: CATransform3D = view.layer.transform
             view.layer.transform = CATransform3DIdentity
             
             var distanceFromCenterX = view.frame.origin.x - contentOffsetX
-//            var distanceFromCenterY = view.frame.origin.y - contentOffsetY
             
             view.layer.transform = t1
             
-            distanceFromCenterX = distanceFromCenterX * 100.0 / CGRectGetWidth(self.frame)
+            distanceFromCenterX = distanceFromCenterX * 100.0 / self.frame.width
             
             let angle = distanceFromCenterX * self.angleRatio
             
             let offset = distanceFromCenterX
-            let translateX = (CGRectGetWidth(self.frame) * self.translateX) * offset / 100.0
-            let translateY = (CGRectGetWidth(self.frame) * self.translateY) * abs(offset) / 100.0
+            let translateX = (frame.width * self.translateX) * offset / 100.0
+            let translateY = (frame.width * self.translateY) * abs(offset) / 100.0
             
             let t: CATransform3D = CATransform3DMakeTranslation(translateX, translateY, 0.0)
             
-            view.layer.transform = CATransform3DRotate(t, DEGREES_TO_RADIANS(angle), self.rotationX, self.rotationY, self.rotationZ)
+            view.layer.transform = CATransform3DRotate(t, degreesToRadians(angle), rotationX, rotationY, rotationZ)
         }
     }
     
     func currentPage() -> Int {
         
-        let pageWidth = self.frame.size.width
-        let fractionalPage = self.contentOffset.x / pageWidth
+        let pageWidth = frame.width
+        let fractionalPage = contentOffset.x / pageWidth
         return lroundf(Float(fractionalPage))
     }
 
-    func loadNextPage(animated: Bool) {
+    func loadNextPage(_ animated: Bool) {
         
-        loadPageIndex(self.currentPage() + 1, animated: animated)
+        loadPageIndex(currentPage() + 1, animated: animated)
     }
     
-    
-    func loadPreviousPage(animated: Bool) {
+    func loadPreviousPage(_ animated: Bool) {
         
-        loadPageIndex(self.currentPage() - 1, animated: animated)
+        loadPageIndex(currentPage() - 1, animated: animated)
     }
 
-    func loadPageIndex(index: Int, animated: Bool) {
+    func loadPageIndex(_ index: Int, animated: Bool) {
         
         var frame = self.frame
         frame.origin.x = frame.size.width * CGFloat(index)
@@ -182,9 +179,9 @@ class AnimationScrollView: UIScrollView {
 
 enum AnimationType {
     
-    case None
-    case Translation
-    case Depth
-    case Carousel
-    case Cards
+    case none
+    case translation
+    case depth
+    case carousel
+    case cards
 }
